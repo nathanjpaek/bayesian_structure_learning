@@ -46,7 +46,7 @@ def calculate_m_ijk(df, dag, x_i, rv_dict):
             j_index = parent_instantiation_to_j[parent_values]
             k_index = value_k_to_k_index[x_i_value]
             m_ijk[j_index, k_index] = count
-            
+
     return m_ijk, q_i, r_i
 
 
@@ -84,7 +84,7 @@ def get_score(dag, df, rv_dict):
     score = 0
     for x_i in dag.nodes():
         parents_of_xi = list(dag.predecessors(x_i))
-        m_ijk, q_i, r_i = calculate_m_ijk(df, x_i, parents_of_xi, rv_dict)
+        m_ijk, q_i, r_i = calculate_m_ijk(df, dag, x_i, rv_dict)
         if q_i == 1: # if no parents
             m_ij = np.sum(m_ijk)
             score += math.lgamma(r_i) - math.lgamma(r_i + m_ij)
