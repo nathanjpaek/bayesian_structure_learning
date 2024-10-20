@@ -125,7 +125,7 @@ def get_next_graphs(dag, rv_list):
 
 # algorithm 5.3 in the book hill climbing
 def fit(dag, df, rv_dict, rv_list):
-    max_iterations = 1000
+    max_iterations = 500
     attempt = 0
     best_score = get_score(dag, df, rv_dict)
     print("initial score: " + str(best_score))
