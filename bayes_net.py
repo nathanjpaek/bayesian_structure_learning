@@ -123,11 +123,12 @@ def get_next_graphs(dag, rv_list):
     return next_dags
 
 
-# algorithm 5.3 in the book 
+# algorithm 5.3 in the book hill climbing
 def fit(dag, df, rv_dict, rv_list):
     max_iterations = 20
     attempt = 0
     best_score = get_score(dag, df, rv_dict)
+    print("initial score: " + best_score)
     best_dag = dag.copy()
     while attempt < max_iterations:
         attempt += 1
@@ -139,9 +140,11 @@ def fit(dag, df, rv_dict, rv_list):
                 best_score = candidate_score
                 best_dag = candidate_dag.copy()
                 improved = True
+                print(f"iteration {attempt}: score: {best_score}")
                 break
         if not improved:
             break 
+    print("final score: " + best_score)
     return best_dag
 
 
